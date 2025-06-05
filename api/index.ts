@@ -2,7 +2,7 @@ import express, { Application } from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import { connectDB } from "../src/config/db";
-import UsersRouters from "../src/routes/auth/UsersArtisanRoutes";
+import UsersRoutes from "../src/routes/auth/UsersArtisanRoutes";
 import AuthRoutes from "../src/routes/auth/AuthRoutes";
 import ProductRoutes from "../src/routes/ProductRoutes"
 import UserArtisanRoutes from '../src/routes/auth/UsersArtisanRoutes'
@@ -16,7 +16,7 @@ app.use(express.json());
 connectDB();
 
 app.use("/usersArtisan",UserArtisanRoutes);
-app.use("/users", UsersRouters);
+app.use("/users", UsersRoutes);
 app.use("/auth", AuthRoutes);
 app.use("/products", ProductRoutes);
 
