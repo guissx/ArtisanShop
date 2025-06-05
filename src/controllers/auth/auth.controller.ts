@@ -10,8 +10,11 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
   const { email, password } = req.body;
 
   try {
+    console.log("REQ.BODY", req.body);
         // tenta buscar primeiro como usuário comum
-    let user = await User.findOne({ email });
+    let user = await User.findOne({ email, isDeleted: false });
+    console.log("Usuário encontrado:", user);
+
     let role = "user";
 
     if (!user) {
