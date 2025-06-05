@@ -6,10 +6,10 @@ import {
   updateUser,
   deleteUser,
   restoreUser,
-} from "../controllers/auth/userArtisan.controller";
+} from "../../controllers/auth/userArtisan.controller";
 
-import { authenticateToken } from "../middlewares/authmiddlewares";
-import upload from "../middlewares/upload";
+import { authenticateToken } from "../../middlewares/authmiddlewares";
+import upload from "../../middlewares/upload";
 
 const router: Router = Router();
 // rotas públicas
