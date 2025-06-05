@@ -32,12 +32,15 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
       return;
     }
 
-    const token = jwt.sign(
-      { userId: user._id, email: user.email, role},
+      const token = jwt.sign(
+      {
+        userId: user._id,
+        email: user.email,
+        role, // <-- importante para distinguir no frontend
+      },
       JWT_SECRET,
       { expiresIn: "1h" }
     );
-
     const { password: _, ...userWithoutPassword } = user.toObject();
 
     res.status(200).json({ token, user: userWithoutPassword });
