@@ -21,7 +21,7 @@ router.post("/register", createUser); // rota pública
 router.put("/:id", authenticateToken, updateUser);
 router.delete("/:id", authenticateToken, deleteUser);
 router.patch("/:id/restore", authenticateToken, restoreUser);
-router.post("/upgrade-to-artisan",  upgradeToArtisan); 
+router.post("/upgrade-to-artisan", authenticateToken, upgradeToArtisan); 
 
 
 export default router;
