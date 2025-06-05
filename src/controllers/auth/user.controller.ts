@@ -140,9 +140,15 @@ export const restoreUser = async (req: Request, res: Response): Promise<void> =>
 
 //Upgrade to Artisan
 export const upgradeToArtisan = async (req: Request, res: Response): Promise<void> => {
-  const { userId, bio, phone, address } = req.body;
+  const { bio, phone, address } = req.body;
+  const userId = (req as any).user?._id; // <- Usando _id do JWT
 
   try {
+    if (!userId) {
+      res.status(401).json({ message: "Usuário não autenticado" });
+      return;
+    }
+
     const existingUser = await User.findById(userId);
     if (!existingUser) {
       res.status(404).json({ message: "Usuário não encontrado" });
@@ -158,7 +164,7 @@ export const upgradeToArtisan = async (req: Request, res: Response): Promise<voi
     const newArtisan = new Artisan({
       name: existingUser.name,
       email: existingUser.email,
-      password: existingUser.password, 
+      password: existingUser.password,
       bio,
       phone,
       address,
@@ -167,7 +173,7 @@ export const upgradeToArtisan = async (req: Request, res: Response): Promise<voi
     await newArtisan.save();
     res.status(201).json({ message: "Usuário agora é um artesão", artisan: newArtisan });
   } catch (error) {
-    res.status(500).json({ message: "Erro ao transformar usuário em artesão", error: error});
+    res.status(500).json({ message: "Erro ao transformar usuário em artesão", error });
   }
 };
 
