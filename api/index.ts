@@ -15,7 +15,7 @@ app.use(express.json());
 
 connectDB();
 
-app.use("/usersArtisan",UserArtisanRoutes);
+app.use("/artisans",UserArtisanRoutes);
 app.use("/users", UsersRoutes);
 app.use("/auth", AuthRoutes);
 app.use("/products", ProductRoutes);
