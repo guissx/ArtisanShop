@@ -141,7 +141,7 @@ export const restoreUser = async (req: Request, res: Response): Promise<void> =>
 //Upgrade to Artisan
 export const upgradeToArtisan = async (req: Request, res: Response): Promise<void> => {
   const { bio, phone, address } = req.body;
-  const userId = (req as any).user?._id; // <- Usando _id do JWT
+  const userId = (req as any).userId;
 
   try {
     if (!userId) {
