@@ -4,7 +4,7 @@ import Artisan from "../../models/UserModelArtisan";
 import { createUserSchema, updateUserSchema  } from "../../validations/userValidation";
 
 // GET ALL (ignora deletados)
-export const getAllUsers = async (req: Request, res: Response): Promise<void> => {
+export const getAllUsersArtisan = async (req: Request, res: Response): Promise<void> => {
   try {
     const users = await Artisan.find({ isDeleted: false }).select("-password");
     res.status(200).json(users);
@@ -14,7 +14,7 @@ export const getAllUsers = async (req: Request, res: Response): Promise<void> =>
 };
 
 // GET BY ID (ignora deletados)
-export const getUserById = async (req: Request, res: Response): Promise<void> => {
+export const getUserByIdArtisan = async (req: Request, res: Response): Promise<void> => {
   try {
     const user = await Artisan.findOne({ _id: req.params.id, isDeleted: false }).select("-password");
     if (!user) {
@@ -28,7 +28,7 @@ export const getUserById = async (req: Request, res: Response): Promise<void> =>
 };
 
 // CREATE
-export const createUser = async (req: Request, res: Response): Promise<void> => {
+export const createUserArtisan = async (req: Request, res: Response): Promise<void> => {
   const { name, email, password, bio, phone } = req.body;
 
   const parse = createUserSchema.safeParse({ name, email, password });
@@ -68,7 +68,7 @@ export const createUser = async (req: Request, res: Response): Promise<void> => 
 };
 
 // UPDATE
-export const updateUser = async (req: Request, res: Response): Promise<void> => {
+export const updateUserArtisan = async (req: Request, res: Response): Promise<void> => {
   const { name, email, password, bio, phone } = req.body;
 
   const parse = updateUserSchema.safeParse({ name, email, password });
@@ -105,7 +105,7 @@ export const updateUser = async (req: Request, res: Response): Promise<void> => 
 };
 
 // SOFT DELETE
-export const deleteUser = async (req: Request, res: Response): Promise<void> => {
+export const deleteUserArtisan = async (req: Request, res: Response): Promise<void> => {
   try {
     const deletedUser = await Artisan.findOneAndUpdate(
       { _id: req.params.id, isDeleted: false },
@@ -124,7 +124,7 @@ export const deleteUser = async (req: Request, res: Response): Promise<void> => 
 };
 
 // RESTORE
-export const restoreUser = async (req: Request, res: Response): Promise<void> => {
+export const restoreUserArtisan = async (req: Request, res: Response): Promise<void> => {
   try {
     const restoredUser = await Artisan.findOneAndUpdate(
       { _id: req.params.id, isDeleted: true },
