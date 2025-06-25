@@ -4,12 +4,12 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage",
-    "dev": "ts-node-dev --respawn --transpile-only api/index.ts",
-    "build": "tsc",
-    "start": "ts-node api/index.ts"
+      "test": "jest --verbose",
+  "test:watch": "jest --watch --verbose",
+  "test:coverage": "jest --coverage",
+  "dev": "ts-node-dev --respawn --transpile-only api/index.ts",
+  "build": "tsc",
+  "start": "ts-node api/index.ts"
   },
   "keywords": [],
   "author": "",
